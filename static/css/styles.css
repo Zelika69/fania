@@ -1,0 +1,58 @@
+body.bg-gradient {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1f2937, #0f172a 60%);
+  color: #e2e8f0;
+}
+
+.navbar {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(12px);
+}
+
+.glass-card {
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  color: #e2e8f0;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.35);
+}
+
+.form-control,
+.form-select {
+  background-color: #0f172a;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #e2e8f0;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 0.2rem rgba(56, 189, 248, 0.25);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  border: none;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.explanation-box {
+  min-height: 200px;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  white-space: pre-wrap;
+}
+
+.CodeMirror {
+  height: 260px;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.toast-container .toast {
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.4);
+}
