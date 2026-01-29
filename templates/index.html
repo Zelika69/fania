@@ -21,15 +21,15 @@
 <body class="bg-gradient">
   <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
     <div class="container">
-      <span class="navbar-brand fw-bold">C# Code Translator</span>
+      <span class="navbar-brand fw-bold">FanIA</span>
       <span class="badge rounded-pill text-bg-info">Gemini</span>
     </div>
   </nav>
 
   <main class="container py-4">
     <div class="row g-4">
-      <div class="col-lg-6">
-        <div class="card glass-card h-100">
+      <div class="col-lg-5">
+        <div class="card glass-card">
           <div class="card-body">
             <h5 class="card-title">Entrada C#</h5>
             <textarea id="codeInput" class="form-control" rows="12"></textarea>
@@ -74,7 +74,7 @@
         </div>
       </div>
 
-      <div class="col-lg-6">
+      <div class="col-lg-7">
         <div class="card glass-card mb-4">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
@@ -91,9 +91,43 @@
             <div id="explanation" class="explanation-box">Sin explicación.</div>
           </div>
         </div>
+
+        <div class="card glass-card mt-4">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <h5 class="card-title mb-0">Historial</h5>
+              <span class="badge text-bg-secondary" id="historyCount">0</span>
+            </div>
+            <div id="historyList" class="history-list mt-3">
+              <div class="history-empty">Sin historial aún.</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </main>
+
+  <div id="historyDetail" class="history-detail d-none">
+    <div class="history-detail-card">
+      <div class="history-detail-header">
+        <div>
+          <h5 class="mb-1">Detalle del chat</h5>
+          <small id="historyMeta" class="text-muted"></small>
+        </div>
+        <button id="closeHistory" class="btn-close btn-close-white" aria-label="Close"></button>
+      </div>
+      <div class="history-detail-body">
+        <div class="detail-section">
+          <div class="detail-title">Código traducido</div>
+          <pre id="historyCode" class="detail-code"></pre>
+        </div>
+        <div class="detail-section">
+          <div class="detail-title">Explicación</div>
+          <div id="historyExplanation" class="detail-explanation"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <div
