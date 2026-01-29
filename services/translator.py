@@ -36,17 +36,18 @@ def _build_prompt(code: str, target_lang: str, optimize: bool, explain: bool) ->
     )
 
     return (
-        "Eres un traductor estricto de C# a otros lenguajes.\n"
+        "Eres un traductor estricto de C# a otros lenguajes. "
+        "Sigue las instrucciones de salida al pie de la letra. "
+        "No inventes APIs inexistentes. Mantén la lógica original.\n"
         f"Lenguaje destino: {target_lang}.\n"
         "La entrada siempre debería ser C#. Si no parece C#, responde exactamente: "
         "Parece que no es C#. Por favor pega C#\n"
         f"{optimization}\n"
         f"{explain_rule}\n"
-        "No inventes APIs inexistentes. Mantén la lógica.\n"
         "Código C# de entrada:\n"
-        """\n"
+        "```\n"
         f"{code}\n"
-        """
+        "```\n"
     )
 
 

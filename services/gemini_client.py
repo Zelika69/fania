@@ -1,48 +1,29 @@
 import os
-import requests
+from google import genai
+from dotenv import load_dotenv
 
-GEMINI_API_URL = (
-    "https://generativelanguage.googleapis.com/v1beta/models/"
-    "gemini-1.5-flash:generateContent"
-)
+load_dotenv()
+
+DEFAULT_MODEL = "gemini-3-flash-preview"
 
 
 class GeminiClient:
-    def __init__(self, api_key: str | None = None, timeout: int = 30) -> None:
+    def __init__(self, api_key: str | None = None, model_id: str | None = None) -> None:
         self.api_key = api_key or os.getenv("GEMINI_API_KEY")
-        self.timeout = timeout
+        self.model_id = model_id or DEFAULT_MODEL
 
         if not self.api_key:
-            raise RuntimeError(
-                "No se encontró GEMINI_API_KEY. Configura la variable de entorno."
-            )
+            raise RuntimeError("GEMINI_API_KEY is not set")
+
+        self.client = genai.Client(api_key=self.api_key)
 
     def generate(self, prompt: str) -> str:
-        url = f"{GEMINI_API_URL}?key={self.api_key}"
-        payload = {
-            "contents": [
-                {
-                    "role": "user",
-                    "parts": [{"text": prompt}],
-                }
-            ],
-            "generationConfig": {
-                "temperature": 0.2,
-                "maxOutputTokens": 2048,
-                "topP": 0.9,
-            },
-        }
+        response = self.client.models.generate_content(
+            model=self.model_id,
+            contents=prompt,
+        )
 
-        response = requests.post(url, json=payload, timeout=self.timeout)
-        if response.status_code != 200:
-            raise RuntimeError(
-                "Error al comunicarse con Gemini. Intenta nuevamente más tarde."
-            )
-
-        data = response.json()
-        try:
-            return data["candidates"][0]["content"]["parts"][0]["text"].strip()
-        except (KeyError, IndexError, TypeError) as exc:
-            raise RuntimeError(
-                "Respuesta inesperada de Gemini. Intenta nuevamente."
-            ) from exc
+        text = getattr(response, "text", None)
+        if not text:
+            raise RuntimeError("Respuesta inesperada de Gemini. Intenta nuevamente.")
+        return text.strip()
