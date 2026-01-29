@@ -8,11 +8,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 DEFAULT_DB_CONFIG = {
-    "dbname": os.getenv("PGDATABASE", "esp32"),
-    "user": os.getenv("PGUSER", "postgres"),
-    "password": os.getenv("PGPASSWORD", "postgres15"),
-    "host": os.getenv("PGHOST", "localhost"),
-    "port": int(os.getenv("PGPORT", "5432")),
+    "dbname": os.getenv("PGDATABASE"),
+    "user": os.getenv("PGUSER"),
+    "password": os.getenv("PGPASSWORD"),
+    "host": os.getenv("PGHOST"),
+    "port": int(os.getenv("PGPORT")),
 }
 
 
